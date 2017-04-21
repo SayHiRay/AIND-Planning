@@ -479,6 +479,8 @@ def expr(x):
     ((P & Q) ==> Q)
     """
     if isinstance(x, str):
+        # this is ingenious.
+        # the str is eval-ed as Symbols(Exprs), where
         return eval(expr_handle_infix_ops(x), defaultkeydict(Symbol))
     else:
         return x
