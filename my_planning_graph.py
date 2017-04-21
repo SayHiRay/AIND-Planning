@@ -357,10 +357,6 @@ class PlanningGraph():
                     a_node.children.add(s_node)
                     s_node.parents.add(a_node)
 
-            # print(type(self.s_levels[level]))
-            # print(type(self.s_levels[level]))
-            # print('s_levels[level]: {}'.format(self.s_levels[level]))
-
     def update_a_mutex(self, nodeset):
         ''' Determine and update sibling mutual exclusion for A-level nodes
 
@@ -384,9 +380,6 @@ class PlanningGraph():
                         self.interference_mutex(n1, n2) or
                         self.competing_needs_mutex(n1, n2)):
                     mutexify(n1, n2)
-                    # print('a_mutex')
-                # else:
-                    # print('NO a_mutex')
 
     def serialize_actions(self, node_a1: PgNode_a, node_a2: PgNode_a) -> bool:
         '''

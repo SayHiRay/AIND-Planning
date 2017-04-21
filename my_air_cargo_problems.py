@@ -132,10 +132,7 @@ class AirCargoProblem(Problem):
                 if clause in kb.clauses:
                     is_possible = False
             if is_possible:
-                # print(action.effect_add)
                 possible_actions.append(action)
-        # print(decode_state(state, self.state_map).pos_sentence())
-        # print(possible_actions)
 
         return possible_actions
 
@@ -254,23 +251,28 @@ def air_cargo_p2() -> AirCargoProblem:
            expr('At(P2, JFK)'),
            expr('At(P3, ATL)'),
            ]
-    neg = []
-    for c in cargos:
-        for p in planes:
-            new_expr = expr('In({}, {})'.format(c, p))
-            if new_expr not in pos:
-                neg.append(new_expr)
-    for c in cargos:
-        for a in airports:
-            new_expr = expr('At({}, {})'.format(c, a))
-            if new_expr not in pos:
-                neg.append(new_expr)
-    for p in planes:
-        for a in airports:
-            new_expr = expr('At({}, {})'.format(p, a))
-            if new_expr not in pos:
-                neg.append(new_expr)
-    # print('pos: {} \nneg: {}'.format(len(pos), len(neg)))
+    neg = [expr('At(C1, JFK)'),
+           expr('At(C1, ATL)'),
+           expr('In(C1, P1)'),
+           expr('In(C1, P2)'),
+           expr('In(C1, P3)'),
+           expr('At(C2, SFO)'),
+           expr('At(C2, ATL)'),
+           expr('In(C2, P1)'),
+           expr('In(C2, P2)'),
+           expr('In(C2, P3)'),
+           expr('At(C3, SFO)'),
+           expr('At(C3, JFK)'),
+           expr('In(C3, P1)'),
+           expr('In(C3, P2)'),
+           expr('In(C3, P3)'),
+           expr('At(P1, JFK)'),
+           expr('At(P1, ATL)'),
+           expr('At(P2, SFO)'),
+           expr('At(P2, ATL)'),
+           expr('At(P3, SFO)'),
+           expr('At(P3, JFK)'),
+           ]
     init = FluentState(pos, neg)
     goal = [expr('At(C1, JFK)'),
             expr('At(C2, SFO)'),
@@ -290,22 +292,33 @@ def air_cargo_p3() -> AirCargoProblem:
            expr('At(P1, SFO)'),
            expr('At(P2, JFK)'),
            ]
-    neg = []
-    for c in cargos:
-        for p in planes:
-            new_expr = expr('In({}, {})'.format(c, p))
-            if new_expr not in pos:
-                neg.append(new_expr)
-    for c in cargos:
-        for a in airports:
-            new_expr = expr('At({}, {})'.format(c, a))
-            if new_expr not in pos:
-                neg.append(new_expr)
-    for p in planes:
-        for a in airports:
-            new_expr = expr('At({}, {})'.format(p, a))
-            if new_expr not in pos:
-                neg.append(new_expr)
+    neg = [expr('At(C1, JFK)'),
+           expr('At(C1, ATL)'),
+           expr('At(C1, ORD)'),
+           expr('In(C1, P1)'),
+           expr('In(C1, P2)'),
+           expr('At(C2, SFO)'),
+           expr('At(C2, ATL)'),
+           expr('At(C2, ORD)'),
+           expr('In(C2, P1)'),
+           expr('In(C2, P2)'),
+           expr('At(C3, SFO)'),
+           expr('At(C3, JFK)'),
+           expr('At(C3, ORD)'),
+           expr('In(C3, P1)'),
+           expr('In(C3, P2)'),
+           expr('At(C4, SFO)'),
+           expr('At(C4, JFK)'),
+           expr('At(C4, ATL)'),
+           expr('In(C4, P1)'),
+           expr('In(C4, P2)'),
+           expr('At(P1, JFK)'),
+           expr('At(P1, ATL)'),
+           expr('At(P1, ORD)'),
+           expr('At(P2, SFO)'),
+           expr('At(P1, ATL)'),
+           expr('At(P1, ORD)'),
+           ]
 
     init = FluentState(pos, neg)
     goal = [expr('At(C1, JFK)'),
